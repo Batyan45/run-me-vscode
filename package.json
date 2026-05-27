@@ -2,7 +2,7 @@
   "name": "run-me-on-files",
   "displayName": "Run Me on Files",
   "description": "Right-click selected files in the Explorer to run user-defined commands with the files as arguments.",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "publisher": "batyan-soft",
   "icon": "images/icon.png",
   "license": "MIT",
@@ -53,7 +53,7 @@
                 },
                 "cwd": {
                   "type": "string",
-                  "markdownDescription": "Optional working directory. Supports `${workspaceFolder}`. Defaults to the workspace root."
+                  "markdownDescription": "Optional working directory. Supports `${workspaceFolder}`, `${fileDirname}` / `${fileDirname:1}` for the directory of `$1`, and `${fileDirname:2}` etc. for other selected files. Defaults to the workspace root."
                 }
               },
               "additionalProperties": false

@@ -1,4 +1,4 @@
-# Run Me
+# Run Me on Files
 
 Right-click selected files in the VSCode Explorer to run user-defined commands with the files as arguments.
 
@@ -21,10 +21,10 @@ Right-click selected files in the VSCode Explorer to run user-defined commands w
    }
    ```
 
-2. In the Explorer, select one or more files, right-click, and choose **Run Me: Run on Selected Files…**.
-3. Run Me detects the current environment and looks at templates under that host key only. It filters them down to those whose argument count exactly matches the number of selected files, then either runs the only match or shows a picker.
+2. In the Explorer, select one or more files, right-click, and choose **Run Me on Files: Run on Selected Files…**.
+3. Run Me on Files detects the current environment and looks at templates under that host key only. It filters them down to those whose argument count exactly matches the number of selected files, then either runs the only match or shows a picker.
 4. If you selected more than one file, a reorder step lets you assign which file becomes `$1`, `$2`, … using ↑/↓ buttons.
-5. The chosen command runs in an integrated terminal named **Run Me**, with each `$N` replaced by the absolute, shell-quoted path of the corresponding selected file.
+5. The chosen command runs in an integrated terminal named **Run Me on Files**, with each `$N` replaced by the absolute, shell-quoted path of the corresponding selected file.
 
 ## Commands
 
@@ -34,7 +34,7 @@ All available from the Command Palette (`Ctrl+Shift+P`):
 | --- | --- |
 | `Run Me: Run on Selected Files…` | Same as the context-menu entry. Falls back to the active editor's file if nothing is selected in the Explorer. |
 | `Run Me: Pick Files & Run…` | Choose a template first, then pick its `$1`…`$N` files via open dialogs. |
-| `Run Me: Add Template…` | Walk through name → command → optional `cwd`. Saved under the current host key. |
+| `Run Me: Add Template…` | Walk through name → command → optional `cwd` with workspace/file-directory placeholders. Saved under the current host key. |
 | `Run Me: Manage Templates…` | Pick a template (for the current host) to edit or delete. |
 | `Run Me: Open Templates in settings.json` | Jump straight to the `runMe.templates` entry in your settings. |
 
@@ -44,11 +44,11 @@ All available from the Command Palette (`Ctrl+Shift+P`):
 | --- | --- | --- |
 | `name` | yes | Display name shown in the picker. |
 | `command` | yes | Shell command. Use `$1`, `$2`, … as placeholders. The number of distinct `$N` references (highest `N`) is the template's **arity**. |
-| `cwd` | no | Working directory. Supports `${workspaceFolder}`. Defaults to the workspace root. |
+| `cwd` | no | Working directory. Supports `${workspaceFolder}`, `${fileDirname}` / `${fileDirname:1}` for the directory of `$1`, and `${fileDirname:2}` etc. for other selected files. Defaults to the workspace root. |
 
 ## Host scoping
 
-Run Me auto-detects the active VSCode environment and uses the matching key:
+Run Me on Files auto-detects the active VSCode environment and uses the matching key:
 
 | Environment | Host key |
 | --- | --- |
@@ -64,7 +64,8 @@ Run Me auto-detects the active VSCode environment and uses the matching key:
 
 - Templates are stored under `runMe.templates` in your **user** settings, so they sync via Settings Sync and are shared across all your workspaces.
 - Paths substituted into `$N` are absolute and POSIX single-quoted, so spaces and special characters work correctly in bash/zsh integrated terminals.
-- The Explorer context-menu entry is shown for file selections (`resourceScheme == 'file' && !explorerResourceIsFolder`). If no templates match the selection count for the current host, Run Me offers to create one.
+- Use `cwd: "${fileDirname:1}"` to run a template from the directory containing `$1`, or `cwd: "${fileDirname:2}"` for `$2`.
+- The Explorer context-menu entry is shown for file selections (`resourceScheme == 'file' && !explorerResourceIsFolder`). If no templates match the selection count for the current host, Run Me on Files offers to create one.
 
 ## Development
 

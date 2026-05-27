@@ -46,8 +46,8 @@ export async function addTemplate(suggestedArity?: number): Promise<void> {
 
 	const cwd = await vscode.window.showInputBox({
 		title: `Run Me — new template (3/3) for ${envLabel}: working directory (optional)`,
-		prompt: 'Leave empty for workspace root. Supports ${workspaceFolder}.',
-		placeHolder: '${workspaceFolder}',
+		prompt: 'Leave empty for workspace root. Supports ${workspaceFolder}, ${fileDirname}, and ${fileDirname:2}.',
+		placeHolder: '${fileDirname:1}',
 	});
 	if (cwd === undefined) {
 		return; // user pressed Escape
@@ -158,7 +158,7 @@ async function editAt(list: Template[], index: number, hostKey: string, envLabel
 	const cwd = await vscode.window.showInputBox({
 		title: `Run Me — edit template (3/3) for ${envLabel}: working directory (optional)`,
 		value: current.cwd ?? '',
-		prompt: 'Leave empty for workspace root.',
+		prompt: 'Leave empty for workspace root. Supports ${workspaceFolder}, ${fileDirname}, and ${fileDirname:2}.',
 	});
 	if (cwd === undefined) {
 		return;

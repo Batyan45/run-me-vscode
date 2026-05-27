@@ -43,7 +43,7 @@ export async function runOnSelection(
 		return;
 	}
 
-	runTemplate(choice, ordered);
+	await runTemplate(choice, ordered);
 }
 
 export async function runWithPicker(): Promise<void> {
@@ -90,7 +90,7 @@ export async function runWithPicker(): Promise<void> {
 		defaultUri = parentUri(file);
 	}
 
-	runTemplate(choice, files);
+	await runTemplate(choice, files);
 }
 
 function parentUri(uri: vscode.Uri): vscode.Uri {

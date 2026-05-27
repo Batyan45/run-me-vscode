@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+
+- Wait for VS Code terminal shell integration before sending the first command, with a 3 second fallback to the previous `sendText` behavior.
+- Added dynamic `cwd` placeholders: `${fileDirname}`, `${fileDirname:1}`, `${fileDirname:2}`, etc. to run templates from selected file directories.
+- Invalid file-directory `cwd` placeholders now show a `Run Me:` error and skip execution instead of running from an unintended directory.
+- Documented the new `cwd` placeholders in settings IntelliSense and README.
+
 ## 0.1.0
 
 - Initial release.
