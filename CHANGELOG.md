@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.0
+
+- Updated icon.
+
 ## 0.2.0
 
 - Wait for VS Code terminal shell integration before sending the first command, with a 3 second fallback to the previous `sendText` behavior.

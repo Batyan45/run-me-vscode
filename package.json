@@ -2,7 +2,7 @@
   "name": "run-me-on-files",
   "displayName": "Run Me on Files",
   "description": "Right-click selected files in the Explorer to run user-defined commands with the files as arguments.",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "publisher": "batyan-soft",
   "icon": "images/icon.png",
   "license": "MIT",
